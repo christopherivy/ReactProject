@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/users/Users";
 import Search from "./components/users/Search";
-import axios from "axios";
+import data from "./Data";
+// import axios from "axios";
+
+/* ===============================
+
+LEFT OFF ON VID 18
+
+===============================*/
 
 import "./App.css";
 
@@ -12,23 +19,39 @@ class App extends Component {
     loading: false,
   };
 
-  // api call here
-  async componentDidMount() {
-    this.setState({ loading: true });
+  //  async componentDidMount() {
+  //    this.setState({ loading: true });
 
-    const res = await axios.get(`https://api.github.com/users?
-    client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&
-    client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  //    const res = await axios.get(
+  //      `https://api.github.com/users?
+  //      client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+  //    );
+
+  //    this.setState({ users: res.data, loading: false });
+  //  }
+
+  //   //   AXIOS CALL - search github users
+  //     searchUsers = async (text) => {
+  //       const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  //       console.log(res.data.items);
+
+  //       this.setState({ users: res.data, loading: false });
+  //     };
+
+  //   HARDCODED CALL - search github users
+  searchUsers = (text) => {
+    const res = data;
+    console.log(res);
 
     this.setState({ users: res.data, loading: false });
-  }
+  };
 
   render() {
     return (
       <div className="App">
         <Navbar />
         <div className="container">
-          <Search />
+          <Search searchUsers={this.searchUsers} />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </div>

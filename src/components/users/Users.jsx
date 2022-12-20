@@ -2,14 +2,33 @@ import React from "react";
 import UserItem from "./UserItem";
 import Spinner from "../layout/Spinner";
 import PropTypes from "prop-types";
+import data from "../../Data";
 
+console.log(data);
+
+// // AXIOS CALL===========================
+// const Users = ({ users, loading }) => {
+//   if (loading) {
+//     return <Spinner />;
+//   } else {
+//     return (
+//       <div style={userStyle}>
+//         {users.map((user) => (
+//           <UserItem key={user.id} user={user} />
+//         ))}
+//       </div>
+//     );
+//   }
+// };
+
+// HARDCODED CALL===========================
 const Users = ({ users, loading }) => {
   if (loading) {
     return <Spinner />;
   } else {
     return (
       <div style={userStyle}>
-        {users.map((user) => (
+        {data.map((user) => (
           <UserItem key={user.id} user={user} />
         ))}
       </div>
